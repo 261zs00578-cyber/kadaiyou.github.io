@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mori no tarte. | 季節のタルトと焼き菓子の小さなアトリエ</title>
+  <!-- Google Fontsの読み込み -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,400&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =========================================
+       カラー変数・基本設定
+    ========================================= */
+    :root {
+      --bg-base: #F9F7F2;      /* 生成り */
+      --bg-sub: #EDE6D8;       /* サンドベージュ */
+      --color-main: #6B4C35;   /* ウッドブラウン */
+      --color-accent: #5C7457; /* フォレストグリーン */
+      --text-color: #3B322C;   /* チャコールブラウン */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-color);
+      font-family: 'Shippori Mincho', serif;
+      line-height: 1.8;
+      letter-spacing: 0.05em;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: opacity 0.3s, color 0.3s;
+    }
+
+    a:hover {
+      color: var(--color-accent);
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-title .en {
+      display: block;
+      font-family: 'Lora', serif;
+      font-size: 2.2rem;
+      color: var(--color-main);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+    }
+
+    .section-title .ja {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      margin-top: 4px;
+    }
+
+    /* =========================================
+       ① ヘッダー
+    ========================================= */
+    header {
+      background-color: rgba(249, 247, 242, 0.92);
+      backdrop-filter: blur(6px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(107, 76, 53, 0.12);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--color-main);
+    }
+
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+    }
+
+    /* =========================================
+       ② メインビジュアル
+    ========================================= */
+    .hero {
+      position: relative;
+      height: 75vh;
+      min-height: 460px;
+      max-height: 720px;
+      background-image: linear-gradient(rgba(59, 50, 44, 0.32), rgba(59, 50, 44, 0.32)), url('images/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      background-color: var(--bg-sub);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #FFFFFF;
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content p {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /* =========================================
+       ③ コンセプト
+    ========================================= */
+    .concept {
+      text-align: center;
+    }
+
+    .concept-text {
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    .concept-text p + p {
+      margin-top: 24px;
+    }
+
+    /* =========================================
+       ④ メニュー
+    ========================================= */
+    .menu-section {
+      background-color: var(--bg-sub);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .menu-card {
+      background-color: var(--bg-base);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(59, 50, 44, 0.06);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-img-wrap {
+      aspect-ratio: 16 / 10;
+      background-color: #DFD6C5;
+      overflow: hidden;
+    }
+
+    .menu-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .menu-card:hover .menu-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .menu-body {
+      padding: 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-tag {
+      display: inline-block;
+      align-self: flex-start;
+      background-color: var(--color-accent);
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .menu-name {
+      font-size: 1.15rem;
+      color: var(--color-main);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .menu-price {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      color: var(--color-main);
+      margin-bottom: 12px;
+    }
+
+    .menu-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .menu-more {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 12px 36px;
+      border: 1px solid var(--color-main);
+      color: var(--color-main);
+      border-radius: 50px;
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover {
+      background-color: var(--color-main);
+      color: #FFFFFF;
+    }
+
+    .drink-list {
+      display: none;
+      max-width: 600px;
+      margin: 32px auto 0;
+      background-color: var(--bg-base);
+      padding: 28px 32px;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .drink-list.is-open {
+      display: block;
+    }
+
+    .drink-list h3 {
+      font-size: 1.1rem;
+      color: var(--color-main);
+      border-bottom: 1px solid var(--bg-sub);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+
+    .drink-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 0.95rem;
+    }
+
+    /* =========================================
+       ⑤ テイクアウト予約フォーム（新規追加）
+    ========================================= */
+    .reserve-lead {
+      text-align: center;
+      max-width: 600px;
+      margin: -24px auto 40px;
+      font-size: 0.95rem;
+    }
+
+    .reserve-box {
+      max-width: 680px;
+      margin: 0 auto;
+      background-color: #FFFFFF;
+      border: 1px solid var(--bg-sub);
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(59, 50, 44, 0.04);
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 600;
+      color: var(--color-main);
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .badge-required {
+      display: inline-block;
+      background-color: var(--color-accent);
+      color: #FFFFFF;
+      font-size: 0.7rem;
+      padding: 1px 7px;
+      border-radius: 3px;
+      margin-left: 8px;
+      vertical-align: middle;
+      font-weight: 400;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #D5CBB8;
+      border-radius: 6px;
+      background-color: var(--bg-base);
+      color: var(--text-color);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      background-color: #FFFFFF;
+    }
+
+    /* 商品数量選択リスト */
+    .order-items {
+      background-color: var(--bg-base);
+      border: 1px solid #D5CBB8;
+      border-radius: 6px;
+      padding: 16px 20px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dashed #D5CBB8;
+      gap: 12px;
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .order-item-info {
+      font-size: 0.92rem;
+    }
+
+    .order-item-price {
+      display: block;
+      font-family: 'Lora', serif;
+      font-size: 0.85rem;
+      color: var(--color-main);
+    }
+
+    .order-qty {
+      width: 84px;
+      padding: 6px 8px;
+      border: 1px solid #D5CBB8;
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    .order-total {
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--color-main);
+      color: var(--color-main);
+    }
+
+    .order-total-amount {
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .btn-submit {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      margin: 32px auto 0;
+      padding: 14px 24px;
+      background-color: var(--color-main);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--color-accent);
+    }
+
+    /* 予約完了メッセージ */
+    .reserve-complete {
+      display: none;
+      text-align: center;
+      padding: 24px 12px;
+    }
+
+    .reserve-complete.is-shown {
+      display: block;
+    }
+
+    .reserve-complete h3 {
+      color: var(--color-accent);
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .reserve-summary {
+      background-color: var(--bg-base);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    /* =========================================
+       ⑥ 店舗情報
+    ========================================= */
+    .shop-section {
+      background-color: var(--bg-sub);
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .shop-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .shop-table th,
+    .shop-table td {
+      padding: 14px 8px;
+      border-bottom: 1px solid rgba(107, 76, 53, 0.18);
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .shop-table th {
+      width: 30%;
+      color: var(--color-main);
+      font-weight: 600;
+    }
+
+    .shop-map {
+      aspect-ratio: 4 / 3;
+      background-color: var(--bg-base);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-main);
+      font-size: 0.9rem;
+      border: 1px dashed var(--color-main);
+    }
+
+    /* =========================================
+       ⑦ フッター
+    ========================================= */
+    footer {
+      background-color: var(--color-main);
+      color: var(--bg-base);
+      text-align: center;
+      padding: 48px 20px 32px;
+    }
+
+    .footer-logo {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      list-style: none;
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--bg-sub);
+    }
+
+    .copyright {
+      font-family: 'Lora', serif;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    /* =========================================
+       レスポンシブ（スマホ対応）
+    ========================================= */
+    @media (max-width: 768px) {
+      .nav-list {
+        gap: 14px;
+        font-size: 0.85rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .reserve-box {
+        padding: 24px 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .shop-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ① ヘッダー -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">Mori no tarte.</a>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#concept">Concept</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#takeout">Takeout</a></li>
+          <li><a href="#shop">Shop Info</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ② メインビジュアル -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>森の恵みを、ひとくちの幸せに。</h1>
+      <p>旬の果実と焼き菓子の小さなアトリエ</p>
+    </div>
+  </section>
+
+  <!-- ③ コンセプト -->
+  <section id="concept" class="section concept">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">Concept</span>
+        <span class="ja">私たちのこだわり</span>
+      </div>
+      <div class="concept-text">
+        <p>
+          木漏れ日が差し込む静かな森の片隅で、<br>
+          その季節に一番おいしい果実を使ったタルトと焼き菓子を焼いています。
+        </p>
+        <p>
+          北海道産発酵バターを贅沢に使った香ばしいタルト生地に、<br>
+          甘さ控えめのクリームと瑞々しいフルーツをたっぷりと。<br>
+          忙しい日常を少しだけ忘れて、ほっと一息つく時間をお届けします。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ メニュー -->
+  <section id="menu" class="section menu-section">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">Menu</span>
+        <span class="ja">季節のタルトと焼き菓子</span>
+      </div>
+
+      <div class="menu-grid">
+        <!-- カード1 -->
+        <article class="menu-card">
+          <div class="menu-img-wrap">
+            <img src="images-tarte-fruit.jpg" alt="季節の果実たっぷり森の恵みタルト">
+          </div>
+          <div class="menu-body">
+            <span class="menu-tag">季節限定</span>
+            <h3 class="menu-name">季節の果実たっぷり「森の恵みタルト」</h3>
+            <p class="menu-price">680円（税込）</p>
+            <p class="menu-desc">
+              香ばしく焼き上げたアーモンドクリームのタルト生地に、その時期一番おいしい旬のフルーツをふんだんに盛り付けました。当店一番人気の看板メニューです。
+            </p>
+          </div>
+        </article>
+
+        <!-- カード2 -->
+        <article class="menu-card">
+          <div class="menu-img-wrap">
+            <img src="images-tarte-nuts.jpg" alt="ほろ苦キャラメルと木の実のタルト">
+          </div>
+          <div class="menu-body">
+            <span class="menu-tag">定番人気</span>
+            <h3 class="menu-name">ほろ苦キャラメルと木の実のタルト</h3>
+            <p class="menu-price">620円（税込）</p>
+            <p class="menu-desc">
+              くるみ、アーモンド、ヘーゼルナッツをキャラメリゼし、サクサクのタルトにぎっしり詰め込みました。深煎りコーヒーとの相性が抜群の、香ばしい一品です。
+            </p>
+          </div>
+        </article>
+
+        <!-- カード3 -->
+        <article class="menu-card">
+          <div class="menu-img-wrap">
+            <img src="images-baked-set.jpg" alt="焼きたて森のフィナンシェ＆カヌレセット">
+          </div>
+          <div class="menu-body">
+            <span class="menu-tag">テイクアウト可</span>
+            <h3 class="menu-name">焼きたて「森のフィナンシェ＆カヌレセット」</h3>
+            <p class="menu-price">550円（税込）</p>
+            <p class="menu-desc">
+              焦がしバターが豊かに香るフィナンシェと、外はカリッと中はもっちりしたカヌレのセット。お持ち帰りや、ちょっとした贈り物にも人気です。
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- ドリンクメニュー開閉 -->
+      <div class="menu-more">
+        <button type="button" class="btn-outline" id="toggleDrinkBtn">ドリンクメニューを見る</button>
+        <div class="drink-list" id="drinkList">
+          <h3>Drink Menu</h3>
+          <div class="drink-item"><span>森の深煎りブレンドコーヒー（Hot / Ice）</span><span>500円</span></div>
+          <div class="drink-item"><span>オーガニック・アールグレイティー（Pot）</span><span>550円</span></div>
+          <div class="drink-item"><span>季節の自家製フルーツソーダ</span><span>600円</span></div>
+          <div class="drink-item"><span>黒糖カフェオレ（Hot / Ice）</span><span>580円</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ テイクアウト予約フォーム -->
+  <section id="takeout" class="section">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">Takeout Reserve</span>
+        <span class="ja">テイクアウト事前予約</span>
+      </div>
+      <p class="reserve-lead">
+        お受け取り希望日の前日17時までにご予約いただくと、お待たせせずにお渡しできます。<br>
+        お支払いは店頭にてお願いいたします。
+      </p>
+
+      <div class="reserve-box">
+        <form id="takeoutForm">
+          <!-- 商品選択 -->
+          <div class="form-group">
+            <label class="form-label">ご希望の商品・数量<span class="badge-required">必須</span></label>
+            <div class="order-items">
+              <div class="order-item">
+                <div class="order-item-info">
+                  季節の果実たっぷり「森の恵みタルト」
+                  <span class="order-item-price">680円（税込）</span>
+                </div>
+                <select class="order-qty" data-name="森の恵みタルト" data-price="680">
+                  <option value="0">0個</option>
+                  <option value="1">1個</option>
+                  <option value="2">2個</option>
+                  <option value="3">3個</option>
+                  <option value="4">4個</option>
+                  <option value="5">5個</option>
+                </select>
+              </div>
+
+              <div class="order-item">
+                <div class="order-item-info">
+                  ほろ苦キャラメルと木の実のタルト
+                  <span class="order-item-price">620円（税込）</span>
+                </div>
+                <select class="order-qty" data-name="ほろ苦キャラメルと木の実のタルト" data-price="620">
+                  <option value="0">0個</option>
+                  <option value="1">1個</option>
+                  <option value="2">2個</option>
+                  <option value="3">3個</option>
+                  <option value="4">4個</option>
+                  <option value="5">5個</option>
+                </select>
+              </div>
+
+              <div class="order-item">
+                <div class="order-item-info">
+                  焼きたて「森のフィナンシェ＆カヌレセット」
+                  <span class="order-item-price">550円（税込）</span>
+                </div>
+                <select class="order-qty" data-name="森のフィナンシェ＆カヌレセット" data-price="550">
+                  <option value="0">0個</option>
+                  <option value="1">1個</option>
+                  <option value="2">2個</option>
+                  <option value="3">3個</option>
+                  <option value="4">4個</option>
+                  <option value="5">5個</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="order-total">
+              <span>店頭お支払い予定額（税込）：</span>
+              <span class="order-total-amount" id="totalAmount">0円</span>
+            </div>
+          </div>
+
+          <!-- 受取日時 -->
+          <div class="form-row form-group">
+            <div>
+              <label for="pickupDate" class="form-label">お受け取り希望日<span class="badge-required">必須</span></label>
+              <input type="date" id="pickupDate" class="form-control" required>
+            </div>
+            <div>
+              <label for="pickupTime" class="form-label">お受け取り時間帯<span class="badge-required">必須</span></label>
+              <select id="pickupTime" class="form-control" required>
+                <option value="">選択してください</option>
+                <option value="11:00〜12:00">11:00 〜 12:00</option>
+                <option value="12:00〜13:00">12:00 〜 13:00</option>
+                <option value="13:00〜14:00">13:00 〜 14:00</option>
+                <option value="14:00〜15:00">14:00 〜 15:00</option>
+                <option value="15:00〜16:00">15:00 〜 16:00</option>
+                <option value="16:00〜17:30">16:00 〜 17:30</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- お客様情報 -->
+          <div class="form-row form-group">
+            <div>
+              <label for="customerName" class="form-label">お名前<span class="badge-required">必須</span></label>
+              <input type="text" id="customerName" class="form-control" placeholder="例：森田 花子" required>
+            </div>
+            <div>
+              <label for="customerTel" class="form-label">お電話番号<span class="badge-required">必須</span></label>
+              <input type="tel" id="customerTel" class="form-control" placeholder="例：090-1234-5678" required>
+            </div>
+          </div>
+
+          <!-- 備考 -->
+          <div class="form-group">
+            <label for="customerNote" class="form-label">ご要望・メッセージプレートなど（任意）</label>
+            <textarea id="customerNote" class="form-control" rows="3" placeholder="保冷剤のご希望や、ギフト包装の有無などをご記入ください"></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">この内容でテイクアウトを予約する</button>
+        </form>
+
+        <!-- 送信完了画面 -->
+        <div class="reserve-complete" id="reserveComplete">
+          <h3>ご予約を承りました</h3>
+          <p>ご来店を心よりお待ちしております。</p>
+          <div class="reserve-summary" id="reserveSummary"></div>
+          <button type="button" class="btn-outline" id="resetReserveBtn">別の予約を入力する</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 店舗情報 -->
+  <section id="shop" class="section shop-section">
+    <div class="container">
+      <div class="section-title">
+        <span class="en">Shop Info</span>
+        <span class="ja">店舗案内</span>
+      </div>
+
+      <div class="shop-grid">
+        <table class="shop-table">
+          <tr>
+            <th>店名</th>
+            <td>Mori no tarte.（もりのたると）</td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td>〒000-0000 架空県森市木漏れ日町 1-2-3</td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td>10:00 〜 18:00（L.O. 17:30）</td>
+          </tr>
+          <tr>
+            <th>定休日</th>
+            <td>水曜日・木曜日</td>
+          </tr>
+          <tr>
+            <th>席数・設備</th>
+            <td>店内 12席 / テイクアウト可 / 駐車場 3台</td>
+          </tr>
+        </table>
+
+        <div class="shop-map">
+          <p>map</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ フッター -->
+  <footer>
+    <div class="footer-logo">Mori no tarte.</div>
+    <ul class="footer-links">
+      <li><a href="#concept">Concept</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#takeout">Takeout</a></li>
+      <li><a href="#shop">Shop Info</a></li>
+    </ul>
+    <p class="copyright">&copy; Mori no tarte. All Rights Reserved.</p>
+    <p class="fictional-note">
+  ※このWebサイトおよび店舗「Mori no tarte.」はWeb制作の練習・ポートフォリオ用に作成された架空のものです。実在の店舗・団体とは一切関係ありません。
+</p>
+  </footer>
+
+  <script>
+    // ドリンクメニュー開閉
+    const toggleBtn = document.getElementById('toggleDrinkBtn');
+    const drinkList = document.getElementById('drinkList');
+
+    toggleBtn.addEventListener('click', () => {
+      drinkList.classList.toggle('is-open');
+      toggleBtn.textContent = drinkList.classList.contains('is-open')
+        ? 'ドリンクメニューを閉じる'
+        : 'ドリンクメニューを見る';
+    });
+
+    // テイクアウト合計金額の自動計算
+    const qtySelects = document.querySelectorAll('.order-qty');
+    const totalAmountEl = document.getElementById('totalAmount');
+
+    function updateTotal() {
+      let total = 0;
+      qtySelects.forEach(select => {
+        const price = Number(select.dataset.price);
+        const qty = Number(select.value);
+        total += price * qty;
+      });
+      totalAmountEl.textContent = total.toLocaleString() + '円';
+      return total;
+    }
+
+    qtySelects.forEach(select => {
+      select.addEventListener('change', updateTotal);
+    });
+
+    // テイクアウト予約フォーム送信処理
+    const takeoutForm = document.getElementById('takeoutForm');
+    const reserveComplete = document.getElementById('reserveComplete');
+    const reserveSummary = document.getElementById('reserveSummary');
+    const resetReserveBtn = document.getElementById('resetReserveBtn');
+
+    takeoutForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const total = updateTotal();
+
+      if (total === 0) {
+        alert('ご希望の商品を1つ以上お選びください。');
+        return;
+      }
+
+      const items = [];
+      qtySelects.forEach(select => {
+        const qty = Number(select.value);
+        if (qty > 0) {
+          items.push(`${select.dataset.name} × ${qty}個`);
+        }
+      });
+
+      const name = document.getElementById('customerName').value;
+      const date = document.getElementById('pickupDate').value;
+      const time = document.getElementById('pickupTime').value;
+
+      reserveSummary.innerHTML = `
+        <p><strong>お名前：</strong>${name} 様</p>
+        <p><strong>お受け取り日時：</strong>${date}（${time}）</p>
+        <p><strong>ご注文内容：</strong>${items.join(' / ')}</p>
+        <p><strong>合計金額（税込）：</strong>${total.toLocaleString()}円</p>
+      `;
+
+      takeoutForm.style.display = 'none';
+      reserveComplete.classList.add('is-shown');
+    });
+
+    resetReserveBtn.addEventListener('click', () => {
+      takeoutForm.reset();
+      updateTotal();
+      reserveComplete.classList.remove('is-shown');
+      takeoutForm.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
